@@ -1,5 +1,5 @@
 import PostCard from '@/components/PostCard'
-import { getCompanyServices, getNews } from '@/services/api'
+import { getCompanyServices, getNewsForHome } from '@/services/api'
 import { getCompany } from '@/services/companyService'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default async function HomePage() {
   const company = await getCompany()
   const services = await getCompanyServices()
-  const news = await getNews()
+  const news = await getNewsForHome()
 
   return (
     <>
@@ -53,7 +53,7 @@ export default async function HomePage() {
       <section className="py-20">
         <h2 className="text-4xl font-bold text-center mb-8">Наши новости</h2>
         <div className="wrapper mb-8 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-12">
-          {news.docs.slice(0, 6).map((post, index) => (
+          {news.docs.map((post, index) => (
             <PostCard key={`post.title-${index}`} post={post} />
           ))}
         </div>

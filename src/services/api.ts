@@ -8,8 +8,20 @@ export async function getCompanyServices() {
   return res.json()
 }
 
-export async function getNews() {
-  const res = await fetch(`${process.env.API_URL}/posts`)
+export async function getNewsForHome() {
+  const res = await fetch(`${process.env.API_URL}/posts/?where[isPublished][equals]=true&limit=6`)
+
+  if (!res.ok) {
+    throw new Error('Ошибка загрузки данных')
+  }
+
+  return res.json()
+}
+
+export async function getAllNews(page) {
+  const res = await fetch(
+    `${process.env.API_URL}/posts/?where[isPublished][equals]=true&limit=3&page=${page}`,
+  )
 
   if (!res.ok) {
     throw new Error('Ошибка загрузки данных')
