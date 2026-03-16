@@ -3,6 +3,9 @@ import { GlobalConfig } from 'payload'
 export const Contacts: GlobalConfig = {
   slug: 'contacts',
   label: 'Страница "Контакты"',
+  access: {
+    read: () => true,
+  },
   fields: [
     {
       name: 'title',

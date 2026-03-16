@@ -49,3 +49,13 @@ export async function getAboutPage() {
 
   return res.json()
 }
+
+export async function getContactPage() {
+  const res = await fetch(`${process.env.API_URL}/globals/contacts`)
+
+  if (!res.ok) {
+    throw new Error('Ошибка загрузки данных')
+  }
+
+  return res.json()
+}
