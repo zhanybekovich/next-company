@@ -1,5 +1,6 @@
 import { getAboutPage } from '@/services/api'
 import Image from 'next/image'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 async function AboutPage() {
   const about = await getAboutPage()
@@ -12,7 +13,11 @@ async function AboutPage() {
         </div>
       </div>
 
-      <div className="max-w-200 mx-auto px-4 py-8">adsfasdf</div>
+      <div className="max-w-200 mx-auto px-4 py-8">
+        <article className="prose prose-slate prose-lg mx-auto">
+          <RichText data={about.content} />
+        </article>
+      </div>
     </section>
   )
 }
