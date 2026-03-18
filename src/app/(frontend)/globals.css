@@ -4,3 +4,7 @@
 .wrapper {
   @apply max-w-7xl mx-auto px-4;
 }
+
+.map iframe {
+  width: 100% !important;
+}
