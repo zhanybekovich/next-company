@@ -1,6 +1,24 @@
 import { getPost } from '@/services/api'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
+
+import type { Metadata } from 'next'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+
+  const postRes = await getPost(slug)
+
+  const post = postRes.docs[0]
+
+  return {
+    title: post?.title || 'О нас',
+  }
+}
 async function PostShow({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 

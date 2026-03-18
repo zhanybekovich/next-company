@@ -9,6 +9,16 @@ import {
   FaWhatsapp,
 } from 'react-icons/fa'
 
+import type { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const contact = await getContactPage()
+
+  return {
+    title: contact?.title || 'О нас',
+  }
+}
+
 async function ContactPage() {
   const company = await getCompany()
   const contact = await getContactPage()

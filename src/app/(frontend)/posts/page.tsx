@@ -2,6 +2,18 @@ import Link from 'next/link'
 import PostCard from '@/components/PostCard'
 import { getAllNews } from '@/services/api'
 
+import type { Metadata } from 'next'
+import { getCompany } from '@/services/companyService'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const company = await getCompany()
+
+  return {
+    title: `Новости - ${company?.name}` || 'Новости',
+    description: company?.description || 'Новости нашей компании',
+  }
+}
+
 async function PostIndex({ searchParams }) {
   const page = (await Number(searchParams?.page)) || 1
   const news = await getAllNews(page)

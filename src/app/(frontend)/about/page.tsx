@@ -1,6 +1,16 @@
 import { getAboutPage } from '@/services/api'
 import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import type { Metadata } from 'next'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const about = await getAboutPage()
+
+  return {
+    title: about?.title || 'О нас',
+    description: about?.description || 'Информация о нашей компании',
+  }
+}
 
 async function AboutPage() {
   const about = await getAboutPage()
